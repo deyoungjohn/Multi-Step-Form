@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Multi-Step Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/images/favicon-32x32.png" title="" type="image/x-icon" />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet"> -->
+</head>
+<body>
+    <main id="main">
+        <article class="form__title">
+            <article class="steps__box">
+                <div class="each__stp one__box">
+                    <div class="numbx" id="forform__one">1</div>
+                    <div class="stp__title">
+                        <h3>Step 1</h3>
+                        <h2>Your Info</h2>
+                    </div>
+                </div>
+                <div class="each__stp two__box">
+                    <div class="numbx" id="forform__two">2</div>
+                    <div class="stp__title">
+                        <h3>Step 2</h3>
+                        <h2>Select Plans</h2>
+                    </div>
+                </div>
+                <div class="each__stp three__box">
+                    <div class="numbx" id="forform__three">3</div>
+                    <div class="stp__title">
+                        <h3>Step 3</h3>
+                        <h2>Add-Ons</h2>
+                    </div>
+                </div>
+                <div class="each__stp four__box">
+                    <div class="numbx" id="forform__four">4</div>
+                    <div class="stp__title">
+                        <h3>Step 4</h3>
+                        <h2>Summary</h2>
+                    </div>
+                </div>
+            </article>
+        </article>
+        <article class="wrapper">
+            <article class="form__body">
+                <form action="" class="form__one active__step step" id="formOne">
+                    <h1 class="section__title">Personal info</h1>
+                    <h3 class="section__subtitle">Please provide your name, email address, and phone number.</h3>
+                    <div class="inputBox">
+                        <label for="name">Name
+                        </label>
+                        <input type="text" placeholder="e.g. Stephen King" id="username" class="username" name="username">
+                        <p class="error__msg"></p>
+                    </div>
+                    <div class="inputBox">
+                        <label for="email">Email</label>
+                        <input type="email" placeholder="e.g. stephenking@lorem.com" id="email" class="email" name="email">
+                        <p class="error__msg"></p>
+                    </div>
+                    <div class="inputBox">
+                        <label for="tel">Phone Number
+                        </label>
+                        <input type="tel" placeholder="e.g. +1 234 567 890" class="tel" name="tel" id="tel">
+                        <p class="error__msg"></p>
+                    </div>
+                </form>
+                
+                <article class="form__two step" id="form__two">
+                    <h1 class="section__title">Select your plan</h1>
+                    <h3 class="section__subtitle">You have the option of monthly or yearly billing.</h3>
+                    <p id="form__two__error">Error</p>
+                    <article class="planBox monthly" id="monthly1">
+                        <label class="plans">
+                            <img src="images/icon-arcade.svg" alt="arcade-icon">
+                            <input type="radio" name="mPlan" id="radio1">
+                            <div class="plan__content">
+                                <p>Arcade</p>
+                                <small>$9/mo</small>
+                            </div>
+                        </label>
+                        <label class="plans">
+                            <img src="images/icon-advanced.svg" alt="advanced-icon">
+                            <input type="radio" name="mPlan" id="radio2">
+                            <div class="plan__content">
+                                <p>Advanced</p>
+                                <small>$12/mo</small>
+                            </div>
+                        </label>
+                        <label class="plans">
+                            <img src="images/icon-pro.svg" alt="pro-icon">
+                            <input type="radio" name="mPlan" id="radio3">
+                            <div class="plan__content">
+                                <p>Pro</p>
+                                <small>$15/mo</small>
+                            </div>
+                        </label>
+                    </article>
+                    <article class="planBox yearly" id="yearly1">
+                        <label class="plans">
+                            <img src="images/icon-arcade.svg" alt="arcade-icon">
+                            <input type="radio" name="yrPlan" id="radio4">
+                            <div class="plan__content">
+                                <p>Arcade</p>
+                                <small class="rate__txt">$90/yr</small>
+                                <small class="discount__txt">2 months free</small>
+                            </div>
+                        </label>
+                        <label class="plans">
+                            <img src="images/icon-advanced.svg" alt="advanced-icon">
+                            <input type="radio" name="yrPlan" id="radio5">
+                            <div class="plan__content">
+                                <p>Advanced</p>
+                                <small class="rate__txt">$120/yr</small>
+                                <small class="discount__txt">2 months free</small>
+                            </div>
+                        </label>
+                        <label class="plans">
+                            <img src="images/icon-pro.svg" alt="pro-icon">
+                            <input type="radio" name="yrPlan" id="radio6">
+                            <div class="plan__content">
+                                <p>Pro</p>
+                                <small class="rate__txt">$150/yr</small>
+                                <small class="discount__txt">2 months free</small>
+                            </div>
+                        </label>
+                    </article>
+                    <article class="toggleBox">
+                        <p class="m__text active">Monthly</p>
+                        <label for="toggle" class="toggled" onclick="monthToYear('monthly1', 'yearly1', 'indicator1')">
+                            <div class="indicator" id="indicator1"></div>
+                        </label>
+                        <input type="checkbox" name="toggle" id="toggle" class="toggle">
+                        <p class="y__text">Yearly</p>
+                    </article>
+                </article>
+
+                <article class="form__three step">
+                    <h1 class="section__title">Pick add-ons</h1>
+                    <h3 class="section__subtitle">Add-ons help enhance your gaming experience.</h3>
+                    <article class="addOnBox monthly" id="monthly2">
+                        <label for="online__service" class="addOn" id="addono">
+                            <input type="checkbox" name="online__service" id="online__service">
+                            <div class="addOn__desc">
+                                <p>Online service</p>
+                                <small>Access to multiplayer games</small>
+                            </div>
+                            <p class="addOn__price">
+                                +$1/mo
+                            </p>
+                        </label>
+                        <label for="larger__storage" class="addOn">
+                            <input type="checkbox" name="larger__storage" id="larger__storage">
+                            <div class="addOn__desc">
+                                <p>Larger storage</p>
+                                <small>Extra 1TB of cloud save</small>
+                            </div>
+                            <p class="addOn__price">
+                                +$2/mo
+                            </p>
+                        </label>
+                        <label for="custom__profile" class="addOn">
+                            <input type="checkbox" name="custom__profile" id="custom__profile">
+                            <div class="addOn__desc">
+                                <p>Customizable Profile</p>
+                                <small>Custom theme on your profile</small>
+                            </div>
+                            <p class="addOn__price">
+                                +$2/mo
+                            </p>
+                        </label>
+                    </article>
+                    <article class="addOnBox yearly" id="yearly2">
+                        <label for="online__service__yr" class="addOn">
+                            <input type="checkbox" name="online__service" id="online__service__yr">
+                            <div class="addOn__desc">
+                                <p>Online service</p>
+                                <small>Access to multiplayer games</small>
+                            </div>
+                            <p class="addOn__price">
+                                +$10/yr
+                            </p>
+                        </label>
+                        <label for="larger__storage__yr" class="addOn">
+                            <input type="checkbox" name="larger__storage" id="larger__storage__yr">
+                            <div class="addOn__desc">
+                                <p>Larger storage</p>
+                                <small>Extra 1TB of cloud save</small>
+                            </div>
+                            <p class="addOn__price">
+                                +$20/yr
+                            </p>
+                        </label>
+                        <label for="custom__profile__yr" class="addOn">
+                            <input type="checkbox" name="custom__profile" id="custom__profile__yr">
+                            <div class="addOn__desc">
+                                <p>Customizable Profile</p>
+                                <small>Custom theme on your profile</small>
+                            </div>
+                            <p class="addOn__price">
+                                +$20/yr
+                            </p>
+                        </label>
+                    </article>
+                    <article class="toggleBox">
+                        <p class="m__text active">Monthly</p>
+                        <label for="toggle" class="toggled" onclick="monthToYear('monthly2', 'yearly2', 'indicator2')">
+                            <div class="indicator" id="indicator2"></div>
+                        </label>
+                        <input type="checkbox" name="toggle" id="toggle" class="toggle">
+                        <p class="y__text">Yearly</p>
+                    </article>  
+                </article>
+                
+                <article class="form__four step">
+                    <h1 class="section__title">Finishing up</h1>
+                    <h3 class="section__subtitle">Double-check everything looks OK before confirming.</h3>
+                    <article class="choiceBox">
+                        <article class="user__summary user__bio">
+                            <div id="bioParent">
+                                <p class="bioTags">Name:</p>
+                                <p class="bio" id="nameHolder"></p>
+                                <p class="bioTags">Email:</p>
+                                <p class="bio" id="emailHolder"></p>
+                                <p class="bioTags">Phone Number:</p>
+                                <p class="bio" id="phoneHolder"></p>
+                                <a class="change change__bio">Change</a>
+                            </div>
+                        </article>
+                        <article class="user__summary user__plan">
+                            <div class="plan__nameBox">
+                                <p id="plan__name" id="plan__name" > Arcade (Monthly)</p>
+                                <p class="plan__cost" id="plan__cost">$9/mo</p>
+                            </div>
+                            <a class="change change__plan">Change</a>
+                        </article>
+                        <article class="user__summary  user__addOns">
+                            <!-- <div>
+                                <p class="addOn__name">Online service</p>
+                                <p class="addOn__cost">+$1/mo</p>
+                            </div> -->
+                        </article>
+                        <article class="user__summary user__bill">
+                            <p class="total__text">Total</p>
+                            <p class="total__amt" id="total__amt">+$12/mo</p>
+                        </article>
+                    </article>
+                </article>
+                <article class="thank__you step grid" id="thank__you">
+                    <div class="grid">
+                        <article class="tickBox">
+                            
+                        </article>
+                        <h1 class="section__title">Thank You!</h1>
+                        <h3 class="section__subtitle">Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free 
+                            to email us at support@loremgaming.com.</h3>
+                    </div>
+                </article>
+            </article>
+            <article class="btnBox" id="btnBox">
+                <button class="btn btn__secondary back" id="backBtn">Go back</button>
+                <button class="btn btn__primary next" id="nextBtn">Next Step</button>
+            </article>
+        </article>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
