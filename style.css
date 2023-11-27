@@ -135,7 +135,7 @@ button{
     text-decoration: none;
     font-size:var(--h3-font-size);
     /* font-weight:var(--fw-medium); */
-    padding: .5rem .75rem;
+    padding: .75rem;
     border-radius:.25rem;
     border: 0;
     outline: 0;
