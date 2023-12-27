@@ -1,6 +1,5 @@
 
-
-// ======= Global Variable Declaration =========
+// ======= Global Variable Declaration and Initialization =========
 myForm = document.getElementById('formOne')
 form__two=document.querySelector('.form__two')
 form__three=document.querySelector('.form__three')
@@ -8,7 +7,7 @@ form__four=document.querySelector('.form__four')
 steps=document.querySelectorAll('.form__body .step')
 
 
-// ==== User Object For Storing User Data=====
+// ==== Object For Storing User Data=====
 user = {
     name:"",
     email:"",
@@ -16,12 +15,6 @@ user = {
     plan:{name:'', price:""}
 }
 
-// tel.oninput=(e)=>{
-//   console.log(e.target)
-//   if(e.enterKey){
-//     nextBtn.click()
-//   }
-// }
 
 // ========= Highlight Active Step ===========
 function stepTogglesFunc(){
@@ -50,6 +43,23 @@ bios.forEach(bio => {
         user.phone=tel.value.trim()
     })
 });
+
+
+// ========== Change Focus To The Next Input ==========
+nextClicks=document.querySelectorAll('.next-click')
+nextClicks.forEach(nextClick=>{
+    nextClick.onkeydown=(event)=>{
+        nextInput=nextClick.parentElement.nextElementSibling.querySelector('input');
+        if(event.keyCode==13){
+            nextInput.focus();
+        }
+    }
+})
+tel.onkeydown=function(event){
+    if(event.keyCode==13){
+        nextBtn.click()
+    }
+}
 
 
 // ========= Form One Validation ===========
@@ -189,11 +199,9 @@ function validateFormTwo() {
         // checkPrice=addOnValues[selIds.indexOf(check.id)].price
         if(planSum.includes(user.plan.price)){
             planSum.splice(planSum.indexOf(user.plan.price), 1)
-            console.log(planSum)
         }
         else{
             planSum.push(user.plan.price)
-            console.log(planSum)
         }
     }
 }
@@ -210,8 +218,7 @@ addOnValues=[
     {name:'Customizable Profile', period:'/yr', desc:'Custom theme on your profile', price:20}]
     
 // ========== Show Selected AddOns ============
-checks=document.querySelectorAll('.addOn input[type="checkbox"]')
-selectedAddOn = []
+checks=document.querySelectorAll('.addOn input[type="radio"]')
 selectedChecks= []
 addOnSum=[]
 addOnBoolean = true
@@ -231,14 +238,41 @@ checks.forEach(check => {
     selDiv.appendChild(selNam)
     selDiv.appendChild(selPrice)
     
-    check.addEventListener('click', ()=>{
-        check.classList.toggle('selected')
-        check.parentElement.classList.toggle('selected')
-        selectedChecks=document.querySelectorAll('input[type="checkbox"].selected')
-        
-    });
+    // check.addEventListener('click', ()=>{
+    //     check.classList.toggle('selected')
+    //     check.parentElement.classList.toggle('selected')
+    //     selectedChecks=document.querySelectorAll('.form__three input[type="radio"].selected')
+    // });
 })
 
+
+
+//This function highlights the selected addOn
+// A user cam only select the monthly or yearly version of an addon and not both
+onlineService=Array.from(document.querySelectorAll('.addOn input[name="online__service"]'));
+largerStorage=Array.from(document.querySelectorAll('.addOn input[name="larger__storage"]'));
+customProfile=Array.from(document.querySelectorAll('.addOn input[name="custom__profile"]'));
+
+const selectedAddOn = (addOnGroup)=>{
+    addOnGroup.forEach(addOn=>{
+        addOn.onclick=()=>{
+            // Toggle the 'selected' class for the clicked radio button
+            addOn.classList.toggle('selected')
+            addOn.parentElement.classList.toggle('selected')
+            // Remove the 'selected' class from other radio buttons
+            addOnGroup.forEach(otherAddOn=>{
+                if(otherAddOn!==addOn){
+                    otherAddOn.classList.remove('selected')
+                    otherAddOn.parentElement.classList.remove('selected')
+                }
+            })
+            selectedChecks=document.querySelectorAll('.form__three input[type="radio"].selected')
+        }
+    })
+}
+selectedAddOn(onlineService)
+selectedAddOn(largerStorage)
+selectedAddOn(customProfile)
 
 // ====== Validate Step Three ==========
 function validateFormThree() {
@@ -251,11 +285,9 @@ function validateFormThree() {
             document.getElementById(`for${sel.id}`).classList.add('active')
             addOnSum.push(addOnValues[selIds.indexOf(sel.id)].price)
         })
-        // console.log(addOnSum)
         user__plan.classList.toggle('show')
     }
     else{
-        // user__addOns.style.display="none"
         user__plan.classList.add('shapeBottom')
     }
     totalPrice=[...planSum, ...addOnSum]
@@ -264,21 +296,36 @@ function validateFormThree() {
 }
 
 
+
+//This function resets  everything when the user clicks on any of the buttons in step four that takes the user to a previous step
+function backProcesses(){
+    nextBtn.innerText="Next Step"
+    nextBtn.style.backgroundColor=`hsl(213, 96%, 18%)`
+    user__plan.classList.remove('show', 'shapeBottom')
+    addOnSum.splice(0, addOnSum.length)
+    selDivs=document.querySelectorAll(`.selDiv.active`)
+    selDivs.forEach(sel=>{sel.classList.remove(`active`)})
+}
+
+
+
+// This function is for both change buttons in Step 4
+const change=()=>{
+    backProcesses()
+    planSum.splice(0, planSum.length)
+    stepTogglesFunc()
+}
 changeBio=document.querySelector('.change__bio')
 changePlan=document.querySelector('.change__plan')
 changeBio.onclick=()=>{
-    nextBtn.innerText="Next Step"
-    nextBtn.style.backgroundColor=`hsl(213, 96%, 18%)`
     form__four.classList.remove(`active__step`)
     formOne.classList.add(`active__step`)
-    stepTogglesFunc()
+    change()
 }
 changePlan.onclick=()=>{
-    nextBtn.innerText="Next Step"
-    nextBtn.style.backgroundColor=`hsl(213, 96%, 18%)`
     form__four.classList.remove(`active__step`)
     form__two.classList.add(`active__step`)
-    stepTogglesFunc()
+    change()
 }
 
 
@@ -299,13 +346,9 @@ nextBtn.addEventListener('click', () => {
         btnBox.style.display="none"
     }
     stepTogglesFunc()
-    // To highlight 4 as step indicator and override stepTogglesFunc()
-    if (thank__you.classList.contains('active__step')) {
-        forform__four.classList.add(`active`)
-    }
 })
 backBtn.onclick=() => {
-    if (form__two.classList.contains('active__step')) {
+    if (form__two.classList.contains('active__step')){
         backBtn.style.display='none'
         form__two.classList.remove('active__step')
         form__two.previousElementSibling.classList.add('active__step')
@@ -316,15 +359,11 @@ backBtn.onclick=() => {
     } else if (form__four.classList.contains('active__step')){
         form__four.classList.remove('active__step')
         form__four.previousElementSibling.classList.add('active__step')
-        nextBtn.innerText="Next Step"
-        nextBtn.style.backgroundColor=`hsl(213, 96%, 18%)`
-        user__plan.classList.remove('show', 'shapeBottom')
-        // user__plan.classList.remove('shapeBottom')
-        addOnSum.splice(0, addOnSum.length)
-        selDivs=document.querySelectorAll(`.selDiv.active`)
-        selDivs.forEach(sel=>{sel.classList.remove(`active`)})
+        backProcesses()
     }
     stepTogglesFunc()
 }
 
-// Highligt 4 in tank you, same plan, same addons
+// Change how Form one is validated
+// Highlight Step 4 in Thank You step
+// Same plan, same addons

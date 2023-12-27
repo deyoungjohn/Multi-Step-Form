@@ -165,3 +165,22 @@ function monthToYear(){
     //         });
     // }, 200);
 }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const radioButtons = document.querySelectorAll('.custom-radio');
+
+    radioButtons.forEach(function (radio) {
+        radio.addEventListener('click', function () {
+            // Toggle the 'selected' class for the clicked radio button
+            radio.classList.toggle('selected');
+
+            // Remove the 'selected' class from other radio buttons
+            radioButtons.forEach(function (otherRadio) {
+                if (otherRadio !== radio) {
+                    otherRadio.classList.remove('selected');
+                }
+            });
+        });
+    });
+});

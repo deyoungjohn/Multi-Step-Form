@@ -51,18 +51,18 @@
                     <div class="inputBox">
                         <label for="name">Name
                         </label>
-                        <input type="text" placeholder="e.g. Stephen King" id="username" class="username" name="username">
+                        <input type="text" placeholder="e.g. Stephen King" id="username" class="username next-click" name="username" enterkeyhint="next">
                         <p class="error__msg"></p>
                     </div>
                     <div class="inputBox">
                         <label for="email">Email</label>
-                        <input type="email" placeholder="e.g. stephenking@lorem.com" id="email" class="email" name="email">
+                        <input type="email" placeholder="e.g. stephenking@lorem.com" id="email" class="email next-click" name="email" enterkeyhint="next">
                         <p class="error__msg"></p>
                     </div>
                     <div class="inputBox">
                         <label for="tel">Phone Number
                         </label>
-                        <input type="tel" placeholder="e.g. +1 234 567 890" class="tel" name="tel" id="tel">
+                        <input type="tel" placeholder="e.g. +1 234 567 890" class="tel" name="tel" id="tel" enterkeyhint="done">
                         <p class="error__msg"></p>
                     </div>
                 </form>
@@ -140,8 +140,8 @@
                     <h1 class="section__title">Pick add-ons</h1>
                     <h3 class="section__subtitle">Add-ons help enhance your gaming experience.</h3>
                     <article class="addOnBox monthly" id="monthly2">
-                        <label for="online__service" class="addOn" id="addono">
-                            <input type="checkbox" name="online__service" id="online__service">
+                        <label for="online__service" class="addOn">
+                            <input type="radio" name="online__service" id="online__service">
                             <div class="addOn__desc">
                                 <p>Online service</p>
                                 <small>Access to multiplayer games</small>
@@ -151,7 +151,7 @@
                             </p>
                         </label>
                         <label for="larger__storage" class="addOn">
-                            <input type="checkbox" name="larger__storage" id="larger__storage">
+                            <input type="radio" name="larger__storage" id="larger__storage">
                             <div class="addOn__desc">
                                 <p>Larger storage</p>
                                 <small>Extra 1TB of cloud save</small>
@@ -161,7 +161,7 @@
                             </p>
                         </label>
                         <label for="custom__profile" class="addOn">
-                            <input type="checkbox" name="custom__profile" id="custom__profile">
+                            <input type="radio" name="custom__profile" id="custom__profile">
                             <div class="addOn__desc">
                                 <p>Customizable Profile</p>
                                 <small>Custom theme on your profile</small>
@@ -173,7 +173,7 @@
                     </article>
                     <article class="addOnBox yearly" id="yearly2">
                         <label for="online__service__yr" class="addOn">
-                            <input type="checkbox" name="online__service" id="online__service__yr">
+                            <input type="radio" name="online__service" id="online__service__yr">
                             <div class="addOn__desc">
                                 <p>Online service</p>
                                 <small>Access to multiplayer games</small>
@@ -183,7 +183,7 @@
                             </p>
                         </label>
                         <label for="larger__storage__yr" class="addOn">
-                            <input type="checkbox" name="larger__storage" id="larger__storage__yr">
+                            <input type="radio" name="larger__storage" id="larger__storage__yr">
                             <div class="addOn__desc">
                                 <p>Larger storage</p>
                                 <small>Extra 1TB of cloud save</small>
@@ -193,7 +193,7 @@
                             </p>
                         </label>
                         <label for="custom__profile__yr" class="addOn">
-                            <input type="checkbox" name="custom__profile" id="custom__profile__yr">
+                            <input type="radio" name="custom__profile" id="custom__profile__yr">
                             <div class="addOn__desc">
                                 <p>Customizable Profile</p>
                                 <small>Custom theme on your profile</small>
@@ -250,7 +250,6 @@
                 <article class="thank__you step grid" id="thank__you">
                     <div class="grid">
                         <article class="tickBox">
-                            
                         </article>
                         <h1 class="section__title">Thank You!</h1>
                         <h3 class="section__subtitle">Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free 
